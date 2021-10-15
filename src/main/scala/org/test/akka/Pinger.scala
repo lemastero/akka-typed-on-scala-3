@@ -3,12 +3,10 @@ package org.test.akka
 import akka.actor.typed.{ActorRef, Behavior}
 import akka.actor.typed.scaladsl.Behaviors
 
-object Pinger {
-
-  enum Command {
+object Pinger:
+  enum Command:
     case SendPing
     case StopPingPong
-  }
 
   // My protocol
   // sealed trait Command
@@ -35,5 +33,4 @@ object Pinger {
         Behaviors.same
     }
   }.narrow
-}
 

@@ -3,24 +3,23 @@ package org.test.akka
 import akka.actor.typed.{ActorRef, Behavior}
 import akka.actor.typed.scaladsl.Behaviors
 
-object PingPong {
+object PingPong:
 
-  enum Command {
+  enum Command:
     case Ping(replyTo: ActorRef[Response])
-  }
+
   export Command._
 
-  enum Response {
+  enum Response:
     case Pong
-  }
+
   export Response._
 
   def apply(): Behavior[Command] = Behaviors.setup { context =>
     (new PingPong).run()
   }
-}
 
-class PingPong {
+class PingPong:
   import PingPong._
 
   def run(): Behavior[Command] = Behaviors.receiveMessage {
@@ -28,6 +27,4 @@ class PingPong {
       replyTo ! Pong
       Behaviors.same
   }
-
-}
 

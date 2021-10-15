@@ -4,8 +4,7 @@ import akka.NotUsed
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{ActorSystem, Behavior, Terminated}
 
-object MainPingPong {
-
+object MainPingPong:
   def apply(): Behavior[NotUsed] = Behaviors.setup { context =>
     val pingPong = context.spawn(PingPong(), "ping-pong")
     val pinger = context.spawn(Pinger(pingPong), "pinger")
@@ -21,11 +20,7 @@ object MainPingPong {
         Behaviors.stopped
     }
   }
-}
 
-object PingPongMain extends App {
-
-  val system = ActorSystem[NotUsed](MainPingPong(), "ping-pong-system")
-
-}
+@main def run: Unit =
+  ActorSystem[NotUsed](MainPingPong(), "ping-pong-system")
 
