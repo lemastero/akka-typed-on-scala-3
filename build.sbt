@@ -1,4 +1,4 @@
-val dottyVersion = "0.23.0-RC1"
+val akkaVersion = "2.6.16"
 
 lazy val root = project
   .in(file("."))
@@ -6,14 +6,13 @@ lazy val root = project
     name := "dotty-simple",
     version := "0.1.0",
 
-    //scalaVersion := dottyLatestNightlyBuild.get,
-    scalaVersion := dottyVersion,
+    scalaVersion := "3.0.2",
 
-    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.3",
+    libraryDependencies += "ch.qos.logback" % "logback-classic" % "1.2.6",
 
     libraryDependencies ++= Seq(
-       "com.typesafe.akka" %% "akka-actor-typed" % "2.6.3",
-       "com.typesafe.akka" %% "akka-slf4j"       % "2.6.3",
-       "org.scalatest"     %% "scalatest"        % "3.1.0" % "test",
-    ).map(_.withDottyCompat(scalaVersion.value))
+       "com.typesafe.akka" %% "akka-actor-typed" % akkaVersion,
+       "com.typesafe.akka" %% "akka-slf4j"       % akkaVersion,
+       "org.scalatest"     %% "scalatest"        % "3.2.10" % Test,
+    ).map(_.cross(CrossVersion.for3Use2_13))
   )

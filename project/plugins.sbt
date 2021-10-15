@@ -1,1 +1,1 @@
-addSbtPlugin("ch.epfl.lamp" % "sbt-dotty" % "0.4.0")
+addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.6.0")
